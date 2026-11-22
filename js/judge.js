@@ -1,5 +1,5 @@
 /*
- * こたえあわせ
+ * 正誤判定
  * 入力を正規化して、単語ごとに登録した正解候補と完全一致するか調べる。
  * 「ー」や「ッ」を一律に無視することはしない（候補は curriculum.js で単語ごとに決めている）。
  */
@@ -21,23 +21,23 @@
     return a.length > 0 && word.k.includes(a);
   }
 
-  // まちがえた時の「おしい！」ヒント
+  // 不正解時の「惜しい！」ヒント
   function nearMissHint(input, word) {
     const a = normalize(input);
     if (!a) return '';
     const oToOu = a.replace(/([オコソトノホモヨロゴゾドボポョォ])ー/g, '$1ウ');
     if (oToOu !== a && word.k.includes(oToOu)) {
-      return 'おしい！ o の なまえの 音は「オウ」と かくよ。「オー」は or の 音だよ。';
+      return '惜しい！ 長い o の音は「オウ」と書きます。「オー」は or の音として区別します。';
     }
     const strip = (s) => s.replace(/[ーッ]/g, '');
     const inputLong = a.includes('ー');
     const wordLong = word.k.some((c) => c.includes('ー'));
     if (word.k.some((c) => strip(c) === strip(a))) {
-      if (inputLong && !wordLong) return 'おしい！ みじかい 音だから「ー」で のばさないよ。';
-      if (!inputLong && wordLong) return 'おしい！ のばす 音「ー」を わすれたかな？';
+      if (inputLong && !wordLong) return '惜しい！ 短い音なので「ー」で伸ばしません。';
+      if (!inputLong && wordLong) return '惜しい！ 長い音なので「ー」で伸ばします。';
     }
     if (inputLong && !wordLong && !/[イウ]/.test(word.main.slice(1))) {
-      return 'この たんごは みじかい 音だよ。のばさずに よもう。';
+      return 'この単語の母音は短い音です。伸ばさずに読みます。';
     }
     return '';
   }

@@ -11,7 +11,7 @@
     <h1>カタカナ フォニックス</h1>
     <nav>
       <button type="button" data-go="home" class="link">ホーム</button>
-      <button type="button" data-go="history" class="link">りれき</button>
+      <button type="button" data-go="history" class="link">学習履歴</button>
     </nav>
   </header>
 
@@ -22,75 +22,75 @@
       <div class="card">
         <ul class="messages" id="home-messages"></ul>
         <p class="counts" id="home-counts"></p>
-        <button type="button" class="big" id="btn-start">はじめる</button>
+        <button type="button" class="big" id="btn-start">学習を始める</button>
       </div>
       <div class="card progress">
-        <p class="label">すすみぐあい</p>
+        <p class="label">進捗</p>
         <div class="bar"><div class="bar-fill" id="home-bar"></div></div>
         <p id="home-progress"></p>
       </div>
     </section>
 
-    <!-- ルールの せつめい -->
+    <!-- ルール説明 -->
     <section id="rule" class="screen" hidden>
       <div class="card">
-        <p class="label" id="rule-label">きょうの ルール</p>
+        <p class="label" id="rule-label">今日のルール</p>
         <div id="rule-body"></div>
-        <button type="button" class="big" id="btn-rule-ok">わかった！ もんだいへ</button>
+        <button type="button" class="big" id="btn-rule-ok">問題を始める</button>
       </div>
     </section>
 
-    <!-- もんだい -->
+    <!-- 問題 -->
     <section id="quiz" class="screen" hidden>
       <div class="quiz-head">
         <span id="quiz-num"></span>
         <span class="badge" id="quiz-kind"></span>
-        <button type="button" class="link" id="btn-show-rule">ルールを みる</button>
+        <button type="button" class="link" id="btn-show-rule">ルールを確認</button>
       </div>
       <div class="bar small"><div class="bar-fill" id="quiz-bar"></div></div>
       <div class="card quiz-card">
-        <p class="prompt">カタカナで よみかたを かいてね</p>
+        <p class="prompt">読み方をカタカナで入力してください</p>
         <p class="word" id="quiz-word" lang="en"></p>
         <form id="quiz-form" autocomplete="off">
           <input id="quiz-input" type="text" inputmode="text" lang="ja"
                  autocomplete="off" autocapitalize="off" spellcheck="false"
-                 placeholder="ここに カタカナ" aria-label="カタカナで こたえ">
-          <button type="submit" class="big" id="btn-answer">こたえる</button>
+                 placeholder="カタカナで入力" aria-label="カタカナで解答">
+          <button type="submit" class="big" id="btn-answer">解答する</button>
         </form>
         <div id="feedback" class="feedback" hidden>
           <p class="mark" id="fb-mark"></p>
           <p id="fb-text"></p>
           <p class="hint" id="fb-hint"></p>
-          <button type="button" class="big" id="btn-next">つぎへ</button>
+          <button type="button" class="big" id="btn-next">次へ</button>
         </div>
       </div>
     </section>
 
-    <!-- けっか -->
+    <!-- 結果 -->
     <section id="result" class="screen" hidden>
       <div class="card">
-        <p class="label">きょうの けっか</p>
+        <p class="label">今日の結果</p>
         <p class="score" id="res-score"></p>
         <p class="res-msg" id="res-msg"></p>
         <div id="res-missed"></div>
         <p class="next" id="res-next"></p>
-        <button type="button" class="big" data-go="home">ホームへ</button>
+        <button type="button" class="big" data-go="home">ホームに戻る</button>
       </div>
     </section>
 
-    <!-- りれき -->
+    <!-- 学習履歴 -->
     <section id="history" class="screen" hidden>
       <div class="card">
-        <p class="label">がくしゅうの りれき</p>
+        <p class="label">学習履歴</p>
         <div id="hist-list"></div>
       </div>
       <div class="card tools">
-        <p class="label">データの ほぞん</p>
-        <p class="small-text">りれきは この ブラウザに ほぞん されます。べつの たんまつに うつす ときや、バックアップに つかってね。</p>
+        <p class="label">データの保存</p>
+        <p class="small-text">学習履歴はこのブラウザ内に保存されます。別の端末へ移行する場合やバックアップには、書き出し・読み込み機能をご利用ください。</p>
         <div class="row">
-          <button type="button" id="btn-export">かきだす（JSON）</button>
-          <label class="file-btn">よみこむ<input type="file" id="file-import" accept="application/json,.json" hidden></label>
-          <button type="button" class="danger" id="btn-reset">さいしょから</button>
+          <button type="button" id="btn-export">書き出し（JSON）</button>
+          <label class="file-btn">読み込み<input type="file" id="file-import" accept="application/json,.json" hidden></label>
+          <button type="button" class="danger" id="btn-reset">履歴をリセット</button>
         </div>
       </div>
     </section>

@@ -35,7 +35,7 @@
   function importJSON(text) {
     const s = JSON.parse(text);
     if (!s || s.version !== 1 || !Array.isArray(s.sessions) || typeof s.unit !== 'number') {
-      throw new Error('ファイルの かたちが ちがいます');
+      throw new Error('ファイルの形式が正しくありません');
     }
     return s;
   }

@@ -89,8 +89,8 @@ test('発音のちがいは不正解', () => {
 });
 
 test('おしいヒント', () => {
-  assert.match(P.nearMissHint('シープ', W.ship), /のばさない/);
-  assert.match(P.nearMissHint('シップ', W.sheep), /のばす/);
+  assert.match(P.nearMissHint('シープ', W.ship), /伸ばしません/);
+  assert.match(P.nearMissHint('シップ', W.sheep), /伸ばします/);
   assert.match(P.nearMissHint('ホープ', W.hope), /オウ/);
 });
 

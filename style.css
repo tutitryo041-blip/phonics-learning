@@ -42,7 +42,8 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 10px 16px; max-width: 640px; margin: 0 auto;
 }
-.top h1 { font-size: 20px; margin: 0; color: var(--main-dark); }
+.top h1 { font-size: 20px; margin: 0; color: var(--main-dark); white-space: nowrap; }
+.top nav { display: flex; white-space: nowrap; }
 main { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
 .card {
   background: var(--card); border-radius: 20px; padding: 20px;
@@ -124,5 +125,7 @@ table.missed th { color: var(--muted); font-size: 14px; font-weight: normal; }
 
 @media (max-width: 420px) {
   .word { font-size: 52px; }
+  .top h1 { font-size: 17px; }
+  .top nav .link { padding: 6px 4px; font-size: 16px; }
   body { font-size: 17px; }
 }

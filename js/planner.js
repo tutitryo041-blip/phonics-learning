@@ -1,6 +1,6 @@
 /*
- * まいにちの内容を決める
- *  - buildDay(state, rng)      : きょうの 30問 と メッセージ を作る
+ * 毎日の学習内容を決める
+ *  - buildDay(state, rng)      : 今日の30問とメッセージを作る
  *  - applyResult(state, result): 結果を履歴に保存し、あしたの内容（ユニット・モード）を決める
  * どちらも state を直接は変更せず、新しいオブジェクトを返す。
  */
@@ -132,35 +132,35 @@
     const t = (i) => `「${UNITS[i].title}」`;
     const msgs = [];
     if (units.length === 0) {
-      msgs.push('ぜんぶの ルールを クリアしたよ！ すごい！');
-      msgs.push('きょうは にがてな たんごを ちゅうしんに ふくしゅうしよう。');
+      msgs.push('すべてのルールを修了しました。お疲れさまでした。');
+      msgs.push('今日は苦手な単語を中心に復習します。');
     } else if (!last) {
-      msgs.push(`はじめまして！ きょうは ${t(units[0])} から はじめよう。`);
+      msgs.push(`ようこそ。今日は${t(units[0])}から始めます。`);
     } else {
       const p = pct(last);
       switch (state.mode) {
         case 'fast':
-          msgs.push(`2かい つづけて ほとんど ぜんもん せいかい！ すごいね。`);
-          msgs.push(units.length === 2 ? `きょうは ${t(units[0])} と ${t(units[1])} を いっしょに やってみよう。` : `きょうは ${t(units[0])} だよ。`);
+          msgs.push('2回続けてほぼ全問正解でした。ペースを上げます。');
+          msgs.push(units.length === 2 ? `今日は${t(units[0])}と${t(units[1])}を同時に学習します。` : `今日は${t(units[0])}を学習します。`);
           break;
         case 'normal':
-          msgs.push(`まえの かいは ${p}％ で ごうかく！`);
-          msgs.push(`きょうは あたらしい ルール ${t(units[0])} だよ。`);
+          msgs.push(`前回は${p}％で合格でした。`);
+          msgs.push(`今日は新しいルール${t(units[0])}を学習します。`);
           break;
         case 'retry':
-          msgs.push(`まえの かいは ${p}％。 ごうかくまで あと すこし！`);
-          msgs.push(`きょうも ${t(units[0])} を、ちがう たんごで れんしゅうしよう。`);
+          msgs.push(`前回は${p}％でした。合格（90％）まであと少しです。`);
+          msgs.push(`今日も${t(units[0])}を、別の単語で練習します。`);
           break;
         case 'easy':
-          msgs.push(`まえの かいは ${p}％。 あせらなくて だいじょうぶ。`);
-          msgs.push(`きょうは みじかくて やさしい たんごから ${t(units[0])} を れんしゅうしよう。`);
+          msgs.push(`前回は${p}％でした。焦らず進めましょう。`);
+          msgs.push(`今日は短くやさしい単語を中心に${t(units[0])}を練習します。`);
           break;
         default:
-          msgs.push(`きょうは ${t(units[0])} だよ。`);
+          msgs.push(`今日は${t(units[0])}を学習します。`);
       }
     }
-    if (counts.miss > 0) msgs.push(`まえに まちがえた たんごが ${counts.miss}もん はいっているよ。`);
-    if (counts.review > 0) msgs.push(`まえに よんだ たんごの ふくしゅうが ${counts.review}もん あるよ。`);
+    if (counts.miss > 0) msgs.push(`前回間違えた単語が${counts.miss}問含まれています。`);
+    if (counts.review > 0) msgs.push(`これまでに学習した単語の復習が${counts.review}問あります。`);
     return msgs;
   }
 
@@ -217,23 +217,23 @@
     return { ...state, unit, mode, sessions, wordStats, current: null };
   }
 
-  // 結果画面用：「あしたは〜」
+  // 結果画面用：次回の予定
   function describeNext(state) {
     const { UNITS } = P;
     const units = unitsForToday(state);
-    if (units.length === 0) return 'つぎの かいは、にがてな たんごの ふくしゅうを するよ。';
+    if (units.length === 0) return '次回は苦手な単語を復習します。';
     const t = (i) => `「${UNITS[i].title}」`;
     switch (state.mode) {
       case 'fast':
         return units.length === 2
-          ? `つぎの かいは ${t(units[0])} と ${t(units[1])} を いっしょに やるよ。`
-          : `つぎの かいは ${t(units[0])} だよ。`;
+          ? `次回は${t(units[0])}と${t(units[1])}を同時に学習します。`
+          : `次回は${t(units[0])}を学習します。`;
       case 'retry':
-        return `つぎの かいも ${t(units[0])} を、ちがう たんごで れんしゅうするよ。`;
+        return `次回も${t(units[0])}を、別の単語で練習します。`;
       case 'easy':
-        return `つぎの かいは ${t(units[0])} を、やさしい たんごから れんしゅうするよ。`;
+        return `次回は${t(units[0])}を、やさしい単語を中心に練習します。`;
       default:
-        return `つぎの かいは あたらしい ルール ${t(units[0])} だよ。`;
+        return `次回は新しいルール${t(units[0])}を学習します。`;
     }
   }
 
