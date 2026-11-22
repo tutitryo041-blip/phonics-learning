@@ -1,0 +1,128 @@
+:root {
+  --bg: #fff8ef;
+  --card: #ffffff;
+  --text: #2f2a24;
+  --muted: #7a6f63;
+  --main: #ff8a3d;
+  --main-dark: #e46f22;
+  --ok: #2fa86b;
+  --ok-bg: #e8f8ef;
+  --ng: #e2574c;
+  --ng-bg: #fdecea;
+  --mark: #ffe066;
+  --line: #f0e3d3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f1b17;
+    --card: #2b2620;
+    --text: #f5eee6;
+    --muted: #b9ab9b;
+    --main: #ff9a52;
+    --main-dark: #ff8a3d;
+    --ok: #4cc98a;
+    --ok-bg: #1f3a2c;
+    --ng: #ff7b70;
+    --ng-bg: #43251f;
+    --mark: #8a6d00;
+    --line: #3c342b;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px; max-width: 640px; margin: 0 auto;
+}
+.top h1 { font-size: 20px; margin: 0; color: var(--main-dark); }
+main { max-width: 640px; margin: 0 auto; padding: 0 16px 40px; }
+.card {
+  background: var(--card); border-radius: 20px; padding: 20px;
+  margin: 12px 0; box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+.label { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+.day { font-size: 28px; font-weight: bold; margin: 12px 0 0; }
+.messages { padding-left: 1.2em; margin: 0 0 8px; }
+.messages li { margin: 4px 0; }
+.counts { color: var(--muted); font-size: 15px; }
+button { font: inherit; cursor: pointer; }
+button.big {
+  display: block; width: 100%; border: 0; border-radius: 16px;
+  background: var(--main); color: #fff; font-size: 22px; font-weight: bold;
+  padding: 14px; margin-top: 12px;
+}
+button.big:hover { background: var(--main-dark); }
+button.link { background: none; border: 0; color: var(--main-dark); padding: 6px 8px; }
+.bar { height: 14px; background: var(--line); border-radius: 7px; overflow: hidden; }
+.bar.small { height: 8px; margin: 6px 0; }
+.bar-fill { height: 100%; background: var(--main); width: 0; transition: width .3s; }
+
+#rule-body h2 { margin: 0 0 8px; color: var(--main-dark); }
+#rule-body p { margin: 6px 0; }
+hr { border: 0; border-top: 2px dashed var(--line); margin: 16px 0; }
+.examples { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.ex { background: var(--bg); border-radius: 12px; padding: 8px 14px; display: flex; flex-direction: column; align-items: center; }
+.ex-w { font-size: 28px; font-weight: bold; font-family: "Andika", "Comic Sans MS", system-ui, sans-serif; }
+.ex-k { color: var(--muted); }
+mark { background: var(--mark); color: inherit; border-radius: 4px; padding: 0 2px; }
+
+.quiz-head { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.quiz-head #quiz-num { font-weight: bold; font-size: 20px; }
+.quiz-head .link { margin-left: auto; }
+.badge { font-size: 14px; border-radius: 10px; padding: 2px 10px; background: var(--line); }
+.badge.new { background: #ffe1c9; color: #8a3d00; }
+.badge.miss { background: #ffd6d2; color: #8a1c12; }
+.badge.review { background: #d8ecff; color: #0c4a80; }
+.quiz-card { text-align: center; }
+.prompt { color: var(--muted); margin: 0; }
+.word {
+  font-size: 64px; font-weight: bold; margin: 8px 0 16px; letter-spacing: 2px;
+  font-family: "Andika", "Comic Sans MS", system-ui, sans-serif; word-break: break-all;
+}
+#quiz-input {
+  width: 100%; font-size: 28px; padding: 12px; text-align: center;
+  border: 3px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--text);
+}
+#quiz-input:focus { outline: none; border-color: var(--main); }
+.feedback { margin-top: 14px; border-radius: 14px; padding: 14px; }
+.feedback.ok { background: var(--ok-bg); }
+.feedback.ng { background: var(--ng-bg); }
+.feedback p { margin: 4px 0; }
+.mark { font-size: 26px; font-weight: bold; }
+.feedback.ok .mark { color: var(--ok); }
+.feedback.ng .mark { color: var(--ng); }
+.hint { color: var(--muted); font-size: 16px; }
+
+.score { font-size: 40px; font-weight: bold; text-align: center; margin: 4px 0; }
+.res-msg { text-align: center; font-size: 20px; }
+.next { font-weight: bold; background: var(--bg); border-radius: 12px; padding: 10px 14px; }
+table.missed { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+table.missed th, table.missed td { border-bottom: 1px solid var(--line); padding: 6px; text-align: left; }
+table.missed th { color: var(--muted); font-size: 14px; font-weight: normal; }
+
+.hist { border-left: 6px solid var(--line); padding: 8px 12px; margin: 10px 0; background: var(--bg); border-radius: 8px; }
+.hist.ok { border-left-color: var(--ok); }
+.hist.ng { border-left-color: var(--ng); }
+.hist-head { display: flex; justify-content: space-between; font-weight: bold; }
+.hist-unit { font-size: 15px; }
+.hist-miss { font-size: 14px; color: var(--muted); word-break: break-word; }
+.tools .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tools button, .file-btn {
+  border: 2px solid var(--line); background: var(--card); color: var(--text);
+  border-radius: 12px; padding: 8px 14px; font-size: 16px; cursor: pointer;
+}
+.tools .danger { color: var(--ng); }
+.small-text { font-size: 14px; color: var(--muted); }
+
+@media (max-width: 420px) {
+  .word { font-size: 52px; }
+  body { font-size: 17px; }
+}
